@@ -89,4 +89,21 @@
         android:layout_marginBottom="137dp"
         android:text="view db" />
 
+    <TextView
+        android:id="@+id/textViewTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/editText_Time"
+        android:layout_marginBottom="211dp"
+        android:text="total text should appear" />
+
+    <Button
+        android:id="@+id/button_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText_Time"
+        android:layout_alignTop="@+id/button_viewall"
+        android:text="Button" />
+
 </RelativeLayout>

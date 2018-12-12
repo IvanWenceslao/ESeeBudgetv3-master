@@ -50,5 +50,44 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return res;
     }
 
+    public int getValueTotalExpenses() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {DatabaseHelper.COL_2, DatabaseHelper.COL_5};
+        int total = 0;
+        Cursor cursor = db.query(DatabaseHelper.TABLE_NAME, columns, DatabaseHelper.COL_5+ "= 'Expense'",
+                null, null, null, null);
+            if(cursor.moveToFirst()){
+                total = cursor.getInt(0);// get final total
+                }
+
+                /* script for rawQuery, old and not useful
+                 Cursor cursor = db.rawQuery("SELECT SUM(VALUE) FROM " + TABLE_NAME + "WHERE TYPE =?", new String[] {"Expense"} );
+                    if(cursor.moveToFirst()){
+                total = cursor.getInt(0);// get final total
+                }
+                 */
+
+        return total;
+    }
+
+    public int getValueTotalIncome() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {DatabaseHelper.COL_2, DatabaseHelper.COL_5};
+        int total = 0;
+        Cursor cursor = db.query(DatabaseHelper.TABLE_NAME, columns, DatabaseHelper.COL_5+ "= 'Income'",
+                null, null, null, null);
+        if(cursor.moveToFirst()){
+            total = cursor.getInt(0);// get final total
+        }
+
+                /* script for rawQuery, old and not useful
+                 Cursor cursor = db.rawQuery("SELECT SUM(VALUE) FROM " + TABLE_NAME + "WHERE TYPE =?", new String[] {"Expense"} );
+                    if(cursor.moveToFirst()){
+                total = cursor.getInt(0);// get final total
+                }
+                 */
+
+        return total;
+    }
 
 }

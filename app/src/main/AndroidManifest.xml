@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".EntryActivity" />
-        <activity android:name=".Datalist"></activity>
+        <!-- <activity android:name=".Datalist"></activity> -->
     </application>
 
 </manifest>

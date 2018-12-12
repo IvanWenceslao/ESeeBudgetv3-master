@@ -16,11 +16,9 @@ import android.widget.Toast;
 public class EntryActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     EditText editValue, editTime, editDate;
-    Button btnAddEntry, btnViewAll;
-    TextView isIncomeOrExpense;
+    Button btnAddEntry, btnViewAll, btnTotal;
+    TextView isIncomeOrExpense, total;
     Switch aSwitch;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,9 @@ public class EntryActivity extends AppCompatActivity {
         editDate = (EditText)findViewById(R.id.editText_Date);
         btnAddEntry = (Button)findViewById(R.id.button_save);
         btnViewAll= (Button)findViewById(R.id.button_viewall);
+        btnTotal= (Button)findViewById(R.id.button_total);
         isIncomeOrExpense = (TextView)findViewById(R.id.textIsIncomeOrExpense);
+        total = (TextView)findViewById(R.id.textViewTotal);
         aSwitch = (Switch)findViewById(R.id.switch1); ////////////////////////////////adding switch
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -48,6 +48,21 @@ public class EntryActivity extends AppCompatActivity {
         });
         AddEntry();
         viewAll();
+        getBalance();
+
+    }
+
+    public void getBalance(){
+        btnTotal.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v){
+                                            Integer integerExpenses = myDb.getValueTotalExpenses();
+                                            Integer integerIncome = myDb.getValueTotalIncome();
+                                            Integer integerTotal = integerIncome - integerExpenses;
+                                            total.setText(Integer.toString(integerTotal));
+                                        }
+                                    }
+        );
     }
 
     public void AddEntry(){
